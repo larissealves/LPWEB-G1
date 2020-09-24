@@ -7,12 +7,8 @@
         <input type="text" id="titulo" name="titulo" [(ngModel)]="titulo" required>
     </div>
     <div>
-        <input id="filme" type="radio" value="filme" name="categoria" formControlName="categoria" [(ngModel)]="categoria">
-        <label for="filme">FILME</label>
-    </div>
-    <div>
-        <input id="serie" type="radio" value="serie" name="categoria" formControlName="categoria">
-        <label for="serie">SERIE</label>
+          <label for="checkbox">Filme</label>
+          <input type="checkbox" id="checkbox" name="checkbox" [(ngModel)]="checkbox">
     </div>
     <div>
         <label for="ano">ano</label><br>
@@ -51,7 +47,25 @@
          {{ item. duracao }} Duracao:
          {{ item. temporadas }} temporadas: 
          {{ item.descricao }}  Descrição: 
-         {{ item.categoria }} 
+         {{ item.checkbox }} 
+        <button type="button" class="btn btn-primary"(click)="editar(item)">
+          Editar 
+        </button > 
+        <button type="button" class="btn btn-primary" (click)="excluir(item)">
+          Excluir
+        </button>
+      </li>
+    </ul>
+
+<h2>PRODUCOES FILMES</h2>
+    <ul id="pendentes">
+      <li *ngFor="let item of listaProducoesFilmes;">
+         {{ item.titulo }} Titulo:
+         {{ item. ano }} Ano: 
+         {{ item. genero }} Genêro: 
+         {{ item. duracao }} Duracao:
+         {{ item. temporadas }} temporadas: 
+         {{ item.descricao }}  Descrição: 
         <button type="button" class="btn btn-primary"(click)="editar(item)">
           Editar 
         </button > 

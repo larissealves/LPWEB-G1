@@ -7,9 +7,7 @@ import { FormBuilder, Validators  } from "@angular/forms";
   styleUrls: ['./app.component.css']
 })
 
-
 export class AppComponent {
-
   titulo = null;
   descricao = null;
   ano = null;
@@ -18,16 +16,12 @@ export class AppComponent {
   temporadas = null;
   filmes = null;
   series = null;
-  categoria = [
-    {valor: 'f', desc: 'filme'},
-    {valor: 's', desc: 'serie'},
-  ];
+  checkbox = true;
   listaProducoes = [];
-  listaProducoesSeries = [];
+  listaProducoesFilmes = [];
   editandoProducao: Producao = null;
  
   
-
   adicionar(){
     if (this.editandoProducao) {
       this.editandoProducao.titulo = this.titulo;
@@ -38,16 +32,20 @@ export class AppComponent {
       this.editandoProducao.temporadas = this. temporadas;  
     }
     else {
-      const adicionarProducoes = new Producao (this.titulo, this.descricao, this.ano, this.genero, this.duracao, this.temporadas)
-      this.listaProducoes.push(adicionarProducoes);
-      console.log(this.listaProducoes);  
-      this.titulo = null;
-      this.descricao = null;
-      this.ano = null;
-      this.genero = null;
-      this.duracao = null;
-      this.temporadas = null;
-
+      if (this.checkbox === true){
+        const adicionarProducoes = new Producao (this.titulo, this.descricao, this.ano, this.genero, this.duracao, this.temporadas, this.checkbox)
+        this.listaProducoesFilmes.push(adicionarProducoes);
+      }
+      else {
+        const adicionarProducoes = new Producao (this.titulo, this.descricao, this.ano, this.genero, this.duracao, this.temporadas, this.checkbox)
+        this.listaProducoes.push(adicionarProducoes);
+        this.titulo = null;
+        this.descricao = null;
+        this.ano = null;
+        this.genero = null;
+        this.duracao = null;
+        this.temporadas = null;
+      }
     }
   
     this.editandoProducao = null;
@@ -58,9 +56,6 @@ export class AppComponent {
     this.duracao = null;
     this.temporadas = null;
    }
-
-
-
 
   excluir(id) {
     this.listaProducoes.splice(this.listaProducoes.indexOf(id),1);
@@ -73,7 +68,9 @@ export class AppComponent {
     this.duracao = producao.duracao;
     this.temporadas = producao.temporadas;
     this.descricao = producao.descricao;
+    this.checkbox = producao.checkbox;
     this.editandoProducao=producao;
+   
   }
   
 }
