@@ -4,10 +4,10 @@ export class Producao {
     ano: string;
     genero: string;
     duracao: string;
-    temporadas: string;
+    temporadas: number;
     checkbox: boolean;
   
-    constructor(titulo: string, descricao: string, ano: string, genero:string, duracao:string, temporadas:string, checkbox:boolean) {
+    constructor(titulo: string, descricao: string, ano: string, genero:string, duracao:string, temporadas:number, checkbox:boolean) {
       this.titulo = titulo;
       this.descricao = descricao;
       this.ano = ano;

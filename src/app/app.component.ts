@@ -7,21 +7,23 @@ import { FormBuilder, Validators  } from "@angular/forms";
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent {
+export class AppComponent{
   titulo = null;
   descricao = null;
   ano = null;
   genero = null;
   duracao = null;
   temporadas = null;
-  filmes = null;
+  radio = null;
   series = null;
   checkbox = true;
   listaProducoes = [];
   listaProducoesFilmes = [];
   editandoProducao: Producao = null;
  
-  
+  gender ='Filme';
+
+
   adicionar(){
     if (this.editandoProducao) {
       this.editandoProducao.titulo = this.titulo;
@@ -32,7 +34,7 @@ export class AppComponent {
       this.editandoProducao.temporadas = this. temporadas;  
     }
     else {
-      if (this.checkbox === true){
+      if (this.gender === 'Filme'){
         const adicionarProducoes = new Producao (this.titulo, this.descricao, this.ano, this.genero, this.duracao, this.temporadas, this.checkbox)
         this.listaProducoesFilmes.push(adicionarProducoes);
       }
