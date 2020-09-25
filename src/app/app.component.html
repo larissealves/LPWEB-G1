@@ -1,81 +1,124 @@
-<h1>Produções</h1>
+
+
 <h2>Cadastrar Produção</h2>
 
-<form #cadastro="ngForm" (submit)="adicionar()">
+<form class="form-group" #cadastro="ngForm" (submit)="adicionar()">
     <div>
-        <label for="titulo">titulo</label><br>
-        <input type="text" id="titulo" name="titulo" [(ngModel)]="titulo" required>
+        <label for="titulo">Título</label><br>
+        <input class="form-control" type="text" id="titulo" name="titulo" [(ngModel)]="titulo" required>
     </div>
+    <br> 
     <div>
-        <label for="ano">ano</label><br>
-        <input type="text" id="ano" name="ano" [(ngModel)]="ano" required>
+        <label for="ano">Ano</label><br>
+        <input class="form-control" type="text" id="ano" name="ano" [(ngModel)]="ano" required>
     </div>
-   <div class="radio">  
-            <label>  
-                <input type="radio" name="gender" value="Filme" [(ngModel)]="gender" [checked]='true'>  
-                Filme 
-            </label>  
-        </div>  
-        <div class="radio">  
-            <label>  
-                <input type="radio" name="gender" value="Serie" [(ngModel)]="gender">  
-                Serie 
-            </label>  
-        </div>  
+   <div class="form-group form-check">  
+   <br> 
+    <label>  
+        <input class="form-check-input"  type="radio" name="gender" value="Filme" [(ngModel)]="gender">  
+        Filme 
+    </label>  
+    </div>  
+    <div class="form-group form-check">  
+        <label>  
+        <input class="form-check-input"  type="radio" name="gender" value="Serie" [(ngModel)]="gender">  
+            Série 
+        </label>  
+    </div> 
+    <div>  
+        <label for="temporadas">Temporadas</label><br>
+        <input class="form-control" type="number" id="temporadas" name="temporadas" [(ngModel)]="temporadas">
+   </div>  
+   <br> 
+   <div>
+        <label for="genero">Gênero</label><br>
+        <input class="form-control" type="text" id="genero" name="genero" [(ngModel)]="genero" required>
+    </div> 
+    <br> 
     <div>
-        <label for="duracao">duracao</label><br>
-        <input type="text" id="duracao" name="duracao" [(ngModel)]="duracao" required>
+        <label for="duracao">Duracao</label><br>
+        <input class="form-control" type="text" id="duracao" name="duracao" [(ngModel)]="duracao" required>
     </div>
+    <br> 
     <div>
-        <label for="temporadas">temporadas</label><br>
-        <input type="number" id="temporadas" name="temporadas" [(ngModel)]="temporadas" required>
-    </div>
-    <div>
-        <label for="descricao">descricao</label><br>
-        <textarea  type="text" id="descricao" name="descricao"  [(ngModel)]="descricao"
-                  cols="70" rows="5">
+        <label for="descricao">Descrição</label><br>
+        <textarea class="form-control" type="text" id="descricao" name="descricao"  [(ngModel)]="descricao" cols="70" rows="5" required>
         </textarea>
     </div>
-        
+    <br>
     <button type="submit" class="btn btn-primary" [disabled]="!cadastro.valid">
         Salvar
     </button>
+    <button type="button" class="btn btn-secondary" (click)="cancelar(item)">
+        Cancelar
+    </button>
 </form>
 
-<h2>PRODUCOES - SERIES</h2>
-    <ul id="pendentes">
-      <li *ngFor="let item of listaProducoes;">
-         {{ item.titulo }} Titulo:
-         {{ item. ano }} Ano: 
-         {{ item. genero }} Genêro: 
-         {{ item. duracao }} Duracao:
-         {{ item. temporadas }} temporadas: 
-         {{ item.descricao }}  Descrição: 
-         {{ item.checkbox }} 
-        <button type="button" class="btn btn-primary"(click)="editar(item)">
-          Editar 
-        </button > 
-        <button type="button" class="btn btn-primary" (click)="excluir(item)">
-          Excluir
-        </button>
-      </li>
-    </ul>
+<div class="row">
+<div class="col-sm-6">
+    <div class="card">
+            <div class="card-header">
+                Filmes
+            </div>
+            <div *ngFor="let item of listaProducoesFilmes;">
+                <div class="card-body">
+                    <h5 class="card-title">{{ item.titulo }} </h5>
+                    <small><strong>  {{ item.ano }} - {{ item.genero }} - {{ item.duracao }} </strong> </small>
+                    <p class="card-text">
+                        {{ item.descricao }}
+                    <p>
+                    <button type="button" class="btn btn-primary"(click)="editar(item)">
+                        Editar 
+                    </button > 
+                    <button type="button" class="btn btn-primary" (click)="excluirFilmes(item)">
+                        Excluir
+                    </button>
+                </div>
+                    
+                   <fieldset class="rating">
+                    <input type="radio" id="star5" name="rating" value="1" [(ngModel)]="fbFilmes" /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
+                    <input type="radio" id="star4" name="rating" value="2" [(ngModel)]="fbFilmes"/><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
+                    <input type="radio" id="star3" name="rating" value="3" [(ngModel)]="fbFilmes"/><label class = "full" for="star3" title="Meh - 3 stars"></label>
+                    <input type="radio" id="star2" name="rating" value="3" [(ngModel)]="fbFilmes"/><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
+                    <input type="radio" id="star1" name="rating" value="3" [(ngModel)]="fbFilmes"/><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
+                   </fieldset>
 
-<h2>PRODUCOES FILMES</h2>
-    <ul id="pendentes">
-      <li *ngFor="let item of listaProducoesFilmes;">
-         {{ item.titulo }} Titulo:
-         {{ item. ano }} Ano: 
-         {{ item. genero }} Genêro: 
-         {{ item. duracao }} Duracao:
-         {{ item. temporadas }} temporadas: 
-         {{ item.descricao }}  Descrição: 
-        <button type="button" class="btn btn-primary"(click)="editar(item)">
-          Editar 
-        </button > 
-        <button type="button" class="btn btn-primary" (click)="excluir(item)">
-          Excluir
-        </button>
-      </li>
-    </ul>
 
+            </div>
+    </div>
+</div>
+
+
+<div class="col-sm-6">
+    <div class="card">
+            <div class="card-header">
+                Séries
+            </div>
+            <div *ngFor="let item of listaProducoes;">
+                <div class="card-body">
+                    <h5 class="card-title">{{ item.titulo }} </h5>
+                    <small><strong>  {{ item.ano }} - {{ item.genero }} - {{ item.duracao }} - {{ item.temporada }} </strong> </small>
+                    <p class="card-text">
+                        {{ item.descricao }}
+                    <p>
+                    <button type="button" class="btn btn-primary"(click)="editar(item)">
+                        Editar 
+                    </button > 
+                    <button type="button" class="btn btn-primary" (click)="excluirFilmes(item)">
+                        Excluir
+                    </button>
+                </div>
+               
+                <fieldset class="ratingg">
+                    <input type="radio" id="star5" name="ratingg" value="1" [(ngModel)]="fbSeries" /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
+                    <input type="radio" id="star4" name="ratingg" value="2" [(ngModel)]="fbSeries"/><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
+                    <input type="radio" id="star3" name="ratingg" value="3" [(ngModel)]="fbSeries"/><label class = "full" for="star3" title="Meh - 3 stars"></label>
+                    <input type="radio" id="star2" name="ratingg" value="3" [(ngModel)]="fbSeries"/><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
+                    <input type="radio" id="star1" name="ratingg" value="3" [(ngModel)]="fbSeries"/><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
+                </fieldset>
+               
+	
+
+        </div>
+    </div>
+</div>
