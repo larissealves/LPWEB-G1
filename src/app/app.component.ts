@@ -73,7 +73,7 @@ export class AppComponent{
 
 
   excluirFilmes(id) {
-    if (this.fbFilmes === "3") {
+    if (this.fbFilmes === "Alto") {
       alert('Produção com 03 star. Impossivel apagar')
     }else{
       if (confirm('Tem certeza que deseja excluir?' )) {
@@ -83,7 +83,7 @@ export class AppComponent{
   }
 
   excluirSeries(id) {
-    if (this.fbSeries === "3") {
+    if (this.fbSeries === "Alto") {
       alert('Produção com 03 star. Impossivel apagar')
     }else{
       if (confirm('Tem certeza que deseja excluir?' )) {

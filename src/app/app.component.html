@@ -5,23 +5,23 @@
 <form class="form-group" #cadastro="ngForm" (submit)="adicionar()">
     <div>
         <label for="titulo">Título</label><br>
-        <input class="form-control" type="text" id="titulo" name="titulo" [(ngModel)]="titulo" required>
+        <input class="form-control" type="text" id="titulo" name="titulo" [(ngModel)]="titulo" >
     </div>
     <br> 
     <div>
         <label for="ano">Ano</label><br>
-        <input class="form-control" type="text" id="ano" name="ano" [(ngModel)]="ano" required>
+        <input class="form-control" type="text" id="ano" name="ano" [(ngModel)]="ano" >
     </div>
    <div class="form-group form-check">  
    <br> 
     <label>  
-        <input class="form-check-input"  type="radio" name="gender" value="Filme" [(ngModel)]="gender">  
+        <input class="form-check-input"  type="radio" name="gender" value="Filme" [(ngModel)]="gender" required>  
         Filme 
     </label>  
     </div>  
     <div class="form-group form-check">  
         <label>  
-        <input class="form-check-input"  type="radio" name="gender" value="Serie" [(ngModel)]="gender">  
+        <input class="form-check-input"  type="radio" name="gender" value="Serie" [(ngModel)]="gender" required>  
             Série 
         </label>  
     </div> 
@@ -32,17 +32,17 @@
    <br> 
    <div>
         <label for="genero">Gênero</label><br>
-        <input class="form-control" type="text" id="genero" name="genero" [(ngModel)]="genero" required>
+        <input class="form-control" type="text" id="genero" name="genero" [(ngModel)]="genero" >
     </div> 
     <br> 
     <div>
         <label for="duracao">Duracao</label><br>
-        <input class="form-control" type="text" id="duracao" name="duracao" [(ngModel)]="duracao" required>
+        <input class="form-control" type="text" id="duracao" name="duracao" [(ngModel)]="duracao" >
     </div>
     <br> 
     <div>
         <label for="descricao">Descrição</label><br>
-        <textarea class="form-control" type="text" id="descricao" name="descricao"  [(ngModel)]="descricao" cols="70" rows="5" required>
+        <textarea class="form-control" type="text" id="descricao" name="descricao"  [(ngModel)]="descricao" cols="70" rows="5" >
         </textarea>
     </div>
     <br>
@@ -77,16 +77,17 @@
                 <div class="card-footer text-muted">
     
                    <fieldset class="rating">
-                    <input type="radio" id="star5" name="rating" value="1" [(ngModel)]="fbFilmes" /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
-                    <input type="radio" id="star4" name="rating" value="2" [(ngModel)]="fbFilmes"/><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
-                    <input type="radio" id="star3" name="rating" value="3" [(ngModel)]="fbFilmes"/><label class = "full" for="star3" title="Meh - 3 stars"></label>
-                    <input type="radio" id="star2" name="rating" value="3" [(ngModel)]="fbFilmes"/><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
-                    <input type="radio" id="star1" name="rating" value="3" [(ngModel)]="fbFilmes"/><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
+                    <input type="radio" id="star5" class="filme" name="star5" value="Alto" [(ngModel)]="fbFilmes"/><label class = "full" for="star5" title="Awesome - 5 stars"></label>
+                    <input type="radio" id="star4" class="filme" name="star4" value="Alto" [(ngModel)]="fbFilmes"/><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
+                    <input type="radio" id="star3" class="filme" name="star3" value="Alto" [(ngModel)]="fbFilmes"/><label class = "full" for="star3" title="Meh - 3 stars"></label>
+                    <input type="radio" id="star2" class="filme" name="star2" value="Baixo" [(ngModel)]="fbFilmes"/><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
+                    <input type="radio" id="star1" class="filme" name="star1" value="Baixo" [(ngModel)]="fbFilmes"/><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
                    </fieldset>
 
                 </div>
             </div>
     </div>
+    
 </div>
 
 
@@ -98,25 +99,25 @@
             <div *ngFor="let item of listaProducoes;">
                 <div class="card-body">
                     <h5 class="card-title">{{ item.titulo }} </h5>
-                    <small><strong>  {{ item.ano }} - {{ item.genero }} - {{ item.duracao }} - {{ item.temporada }} </strong> </small>
+                    <small><strong>  {{ item.ano }} - {{ item.genero }} - {{ item.duracao }} - {{ item.temporada }} temporadas</strong> </small>
                     <p class="card-text">
                         {{ item.descricao }}
                     <p>
                     <button type="button" class="btn btn-primary"(click)="editar(item)">
                         Editar 
                     </button > 
-                    <button type="button" class="btn btn-primary" (click)="excluirFilmes(item)">
+                    <button type="button" class="btn btn-primary" (click)="excluirSeries(item)">
                         Excluir
                     </button>
                 </div>
             <div class="card-footer text-muted">
-                <fieldset class="ratingg">
-                    <input type="radio" id="star5" name="ratingg" value="1" [(ngModel)]="fbSeries" /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
-                    <input type="radio" id="star4" name="ratingg" value="2" [(ngModel)]="fbSeries"/><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
-                    <input type="radio" id="star3" name="ratingg" value="3" [(ngModel)]="fbSeries"/><label class = "full" for="star3" title="Meh - 3 stars"></label>
-                    <input type="radio" id="star2" name="ratingg" value="3" [(ngModel)]="fbSeries"/><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
-                    <input type="radio" id="star1" name="ratingg" value="3" [(ngModel)]="fbSeries"/><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
-                </fieldset>        
+                <fieldset class="rating">
+                    <input type="radio" id="star5" class="serie" name="star5" value="Alto" [(ngModel)]="fbSeries"/><label class = "full" for="star5" title="Awesome - 5 stars"></label>
+                    <input type="radio" id="star4" class="serie" name="star4" value="Alto" [(ngModel)]="fbSeries"/><label class = "full" for="star4" title="Pretty good - 4 stars"></label>
+                    <input type="radio" id="star3" class="serie" name="star3" value="Alto" [(ngModel)]="fbSeries"/><label class = "full" for="star3" title="Meh - 3 stars"></label>
+                    <input type="radio" id="star2" class="serie" name="star2" value="Baixo" [(ngModel)]="fbSeries"/><label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
+                    <input type="radio" id="star1" class="serie" name="star1" value="Baixo" [(ngModel)]="fbSeries"/><label class = "full" for="star1" title="Sucks big time - 1 star"></label>
+                </fieldset>       
 	        </div>
         </div>
     </div>
